@@ -5,7 +5,6 @@ import com.globetrotter.mcp.travel.model.FlightSearchResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import feign.Request;
 

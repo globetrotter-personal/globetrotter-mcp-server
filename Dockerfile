@@ -15,7 +15,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy the built JAR file
-COPY target/*.jar app.jar
+COPY target/globetrotter-mcp-server-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the application port
 EXPOSE 8082

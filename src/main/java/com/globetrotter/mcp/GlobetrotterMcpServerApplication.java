@@ -1,22 +1,26 @@
 package com.globetrotter.mcp;
 
+import com.globetrotter.mcp.travel.service.TravelService;
+import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.tool.method.MethodToolCallbackProvider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
-import com.globetrotter.mcp.travel.service.TravelService;
 
 @SpringBootApplication
 @EnableFeignClients
-public class McpServerApplication {
+public class GlobetrotterMcpServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(McpServerApplication.class, args);
+        SpringApplication.run(GlobetrotterMcpServerApplication.class, args);
     }
 
     @Bean
-    public MethodToolCallbackProvider flightToolCallbackProvider(TravelService travelService) {
-        return MethodToolCallbackProvider.builder().toolObjects(travelService).build();
+    public ToolCallbackProvider tools(TravelService travelService) {
+        return MethodToolCallbackProvider.builder()
+                .toolObjects(travelService)
+                .build();
     }
+
 }

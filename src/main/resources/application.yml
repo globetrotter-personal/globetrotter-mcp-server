@@ -1,6 +1,4 @@
-server:
-  port: 8086
-
+# Globetrotter Travel MCP Server Configuration
 spring:
   ai:
     mcp:
@@ -8,15 +6,17 @@ spring:
         name: globetrotter-mcp-server
         version: 1.0.0
         description: MCP Server for Globetrotter Travel Application
-        sse:
-          enabled: true
-          path: /sse
+server:
+    port: 8082
 
-  # Logging configuration
-  logging:
+# Logging configuration
+logging:
     level:
+      root: DEBUG
       com.globetrotter.mcp: DEBUG
       org.springframework.web: DEBUG
+      org.springframework.ai: DEBUG
+      org.springframework.boot: DEBUG
     pattern:
       console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 

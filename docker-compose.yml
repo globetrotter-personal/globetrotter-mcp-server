@@ -1,0 +1,28 @@
+services:
+  globetrotter-mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: globetrotter-mcp-server:0.0.1-SNAPSHOT
+    container_name: globetrotter-mcp-server
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_APPLICATION_NAME=globetrotter-mcp-server
+      - SPRING_AI_MCP_SERVER_ENABLED=true
+      - SPRING_AI_MCP_SERVER_VERSION=1.0.0
+      - SERVICES_TRAVEL_URL=http://globetrotter-services:8080
+    restart: unless-stopped
+    networks:
+      - globetrotter-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8082/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  globetrotter-network:
+    external: true
